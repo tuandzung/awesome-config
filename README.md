@@ -30,3 +30,14 @@ Feel free to submit PRs!
 ## Credits
 
 [This config](https://git.linuxit.us/spider/awesome/src/commit/921c5019df6a03915e09efcb1336bbca518a4401) was used as a base.
+
+## Requirements:
+
+### Minimal
++ [awesome-git](https://aur.archlinux.org/awesome-git) - git version required
+
+### Optional
++ [dex](https://archlinux.org/packages/community/any/dex/) - XDG autostart
++ [xorg-xrdb](https://archlinux.org/packages/extra/x86_64/xorg-xrdb/) - autostart dependency
++ [picom-ibhagwan-git](https://aur.archlinux.org/picom-ibhagwan-git) - compositor with kawaze blur
++ [rofi](https://archlinux.org/packages/community/x86_64/rofi/) - application search and switcher

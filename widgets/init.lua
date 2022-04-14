@@ -1,4 +1,4 @@
 return {
-   menu = require'widgets.menu',
-   wibar = require'widgets.wibar',
+    menu = require('widgets.menu'),
+    wibar = require('widgets.wibar'),
 }
