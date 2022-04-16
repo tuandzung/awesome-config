@@ -43,6 +43,15 @@ awful.keyboard.append_global_keybindings({
     }),
     awful.key({
         modifiers = { mod.super },
+        key = 'l',
+        description = 'lock screen',
+        group = 'awesome',
+        on_press = function()
+            awful.spawn.with_shell('light-locker-command -l')
+        end,
+    }),
+    awful.key({
+        modifiers = { mod.super },
         key = 'x',
         description = 'lua execute prompt',
         group = 'awesome',
