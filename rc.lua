@@ -4,12 +4,16 @@
 pcall(require, 'luarocks.loader')
 
 _G.conf = require('config')
+
+local awful = require('awful')
 -- load theme
 local beautiful = require('beautiful')
 local gears = require('gears')
 beautiful.init(gears.filesystem.get_themes_dir() .. 'default/theme.lua')
 
--- load key and mouse bindings
+local rc_dir = awful.util.get_configuration_dir()
+package.path = package.path .. ';' .. rc_dir .. 'modules/?.lua;' .. rc_dir .. 'modules/?/init.lua'
+
 require('bindings')
 
 -- load rules
@@ -19,3 +23,5 @@ require('rules')
 require('signals')
 
 require('utils')
+
+require('modules')
