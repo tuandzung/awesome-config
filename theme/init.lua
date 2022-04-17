@@ -87,7 +87,7 @@ theme.titlebar_button_margin_horizontal = 5
 theme.titlebar_button_margin_top        = 2
 
 -- Topbar
-theme.top_panel_height = dpi(32)
+theme.top_panel_height = dpi(24)
 theme.bottom_panel_height = dpi(18)
 
 return theme

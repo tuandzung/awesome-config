@@ -6,6 +6,15 @@ local menu = require('widgets.menu')
 local taglist = require('widgets.wibar.taglist')
 local tasklist = require('widgets.wibar.tasklist')
 local layoutbox = require('widgets.wibar.layoutbox')
+local lain = require('lain')
+local lw = require('widgets.wibar.lain_widgets')
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+
+local separators = lain.util.separators
+-- Separators
+local spr     = wibox.widget.textbox(' ')
+local arrl_dl = separators.arrow_left(beautiful.bg_focus, 'alpha')
+local arrl_ld = separators.arrow_left('alpha', beautiful.bg_focus)
 
 return function(s)
     s.widgets = {
@@ -36,32 +45,65 @@ return function(s)
             -- right widgets
             {
                 layout = wibox.layout.fixed.horizontal,
-                s.widgets.keyboardlayout,
                 s.widgets.systray,
-                s.widgets.textclock,
-                s.widgets.layoutbox,
+                spr,
+                wibox.widget.imagebox(beautiful.widget_vol),
+                volume_widget{
+                    widget_type = 'horizontal_bar',
+                    device = 'pipewire',
+                    step = '1',
+                    shape = 'powerline'
+                },
+                spr,
+                arrl_ld,
+                wibox.container.background(lw.cpuicon, beautiful.bg_focus),
+                wibox.container.background(lw.cpu.widget, beautiful.bg_focus),
+                arrl_dl,
+                lw.memicon,
+                lw.mem.widget,
+                arrl_ld,
+                wibox.container.background(lw.tempicon, beautiful.bg_focus),
+                wibox.container.background(lw.temp.widget, beautiful.bg_focus),
+                arrl_dl,
+                lw.hddicon,
+                lw.hdd.widget,
+                arrl_ld,
+                wibox.container.background(lw.neticon, beautiful.bg_focus),
+                wibox.container.background(lw.netdowninfo, beautiful.bg_focus),
+                wibox.container.background(lw.netupinfo, beautiful.bg_focus),
+                arrl_dl,
+                lw.clock,
+                spr,
+                arrl_ld,
+                wibox.container.background(s.widgets.layoutbox, beautiful.bg_focus),
             },
         },
     })
 
-    s.widgets.wibar = awful.wibar({
-        screen = s,
-        position = 'bottom',
-        widget = {
-            layout = wibox.layout.align.horizontal,
-            -- left widgets
-            {
-                layout = wibox.layout.fixed.horizontal,
-                menu.launcher,
-                s.widgets.taglist,
-                s.widgets.promptbox,
-            },
-            -- middle widgets
-            s.widgets.tasklist,
-            -- right widgets
-            {
-                layout = wibox.layout.fixed.horizontal,
-            },
-        },
-    })
+    -- s.widgets.wibar = awful.wibar({
+        -- screen = s,
+        -- position = 'bottom',
+        -- widget = {
+            -- layout = wibox.layout.align.horizontal,
+            -- -- left widgets
+            -- {
+                -- layout = wibox.layout.fixed.horizontal,
+                -- menu.launcher,
+                -- s.widgets.taglist,
+                -- s.widgets.promptbox,
+            -- },
+            -- -- middle widgets
+            -- s.widgets.tasklist,
+            -- -- right widgets
+            -- {
+                -- layout = wibox.layout.fixed.horizontal,
+                -- arrl_dl,
+                -- mem_widgets.memicon,
+                -- mem_widgets.mem.widget,
+                -- arrl_ld,
+                -- wibox.container.background(cpu_widgets.cpuicon, beautiful.bg_focus),
+                -- wibox.container.background(cpu_widgets.cpu.widget, beautiful.bg_focus),
+            -- },
+        -- },
+    -- })
 end

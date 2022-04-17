@@ -6,6 +6,7 @@ local menubar = require('menubar')
 local apps = require('config.apps')
 local mod = require('bindings.mod')
 local widgets = require('widgets')
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 
 menubar.utils.terminal = apps.terminal
 
@@ -341,6 +342,24 @@ awful.keyboard.append_global_keybindings({
             end
         end,
     }),
+})
+
+-- volume
+awful.keyboard.append_global_keybindings({
+    awful.key({
+        modifiers = { mod.super },
+        key = '[',
+        description = 'increase volume +5',
+        group = 'launcher',
+        on_press = function() volume_widget:inc(5) end,
+    }),
+    awful.key({
+        modifiers = { mod.super },
+        key = ']',
+        description = 'decrease volume -5',
+        group = 'launcher',
+        on_press = function() volume_widget:dec(5) end,
+    })
 })
 
 -- open rofi
