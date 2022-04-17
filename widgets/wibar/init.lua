@@ -1,5 +1,6 @@
 local awful = require('awful')
 local wibox = require('wibox')
+local beautiful = require('beautiful')
 
 local menu = require('widgets.menu')
 local taglist = require('widgets.wibar.taglist')
@@ -20,6 +21,7 @@ return function(s)
     s.widgets.wibar = awful.wibar({
         screen = s,
         position = 'top',
+        height = beautiful.top_panel_height,
         widget = {
             layout = wibox.layout.align.horizontal,
             -- left widgets
@@ -38,6 +40,27 @@ return function(s)
                 s.widgets.systray,
                 s.widgets.textclock,
                 s.widgets.layoutbox,
+            },
+        },
+    })
+
+    s.widgets.wibar = awful.wibar({
+        screen = s,
+        position = 'bottom',
+        widget = {
+            layout = wibox.layout.align.horizontal,
+            -- left widgets
+            {
+                layout = wibox.layout.fixed.horizontal,
+                menu.launcher,
+                s.widgets.taglist,
+                s.widgets.promptbox,
+            },
+            -- middle widgets
+            s.widgets.tasklist,
+            -- right widgets
+            {
+                layout = wibox.layout.fixed.horizontal,
             },
         },
     })
