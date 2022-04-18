@@ -1,4 +1,5 @@
 local awful = require('awful')
+local gears = require('gears')
 local beautiful = require('beautiful')
 local wibox = require('wibox')
 local lain = require('lain')
@@ -49,8 +50,8 @@ _M.netupinfo = wibox.widget.textbox()
 _M.neticon = wibox.widget.imagebox(beautiful.widget_net)
 _M.net = lain.widget.net({
     settings = function()
-        _M.netupinfo:set_markup(markup.fontfg(beautiful.font, "#e54c62", string.format("%06.1f", net_now.sent) .. " KB/s "))
-        _M.netdowninfo:set_markup(markup.fontfg(beautiful.font, "#87af5f", string.format("%06.1f", net_now.received) .. " KB/s "))
+        _M.netupinfo:set_markup(markup.fontfg(beautiful.font, "#e54c62", string.format("%7.1f", net_now.sent) .. " KB/s "))
+        _M.netdowninfo:set_markup(markup.fontfg(beautiful.font, "#87af5f", string.format("%7.1f", net_now.received) .. " KB/s "))
     end
 })
 
@@ -60,6 +61,40 @@ _M.temp = lain.widget.temp({
     tempfile = '/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp3_input',  -- AMD CPU
     settings = function()
         widget:set_markup(markup.font(beautiful.font, " " .. math.ceil(coretemp_now) .. "°C "))
+    end
+})
+
+local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
+-- local musicplr = awful.util.terminal .. " -title Music -e ncmpcpp"
+local mpdicon = wibox.widget.imagebox(beautiful.widget_music)
+mpdicon:buttons(my_table.join(
+    -- awful.button({ "Mod4" }, 1, function () awful.spawn(musicplr) end),
+    awful.button({ }, 1, function ()
+        os.execute("mpc prev")
+        _M.mpd.update()
+    end),
+    awful.button({ }, 2, function ()
+        os.execute("mpc toggle")
+        _M.mpd.update()
+    end),
+    awful.button({ }, 3, function ()
+        os.execute("mpc next")
+        _M.mpd.update()
+    end)))
+_M.mpdicon = mpdicon
+_M.mpd = lain.widget.mpd({
+    settings = function()
+        if mpd_now.state == "play" then
+            artist = " " .. mpd_now.artist .. " "
+            title  = mpd_now.title  .. " "
+            mpdicon:set_image(beautiful.widget_music_on)
+        else
+            artist = ""
+            title  = ""
+            mpdicon:set_image(beautiful.widget_music)
+        end
+
+        widget:set_markup(markup.font(beautiful.font, markup("#EA6F81", artist) .. title))
     end
 })
 

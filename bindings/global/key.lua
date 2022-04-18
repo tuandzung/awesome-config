@@ -348,14 +348,14 @@ awful.keyboard.append_global_keybindings({
 awful.keyboard.append_global_keybindings({
     awful.key({
         modifiers = { mod.super },
-        key = '[',
+        key = ']',
         description = 'increase volume +5',
         group = 'launcher',
         on_press = function() volume_widget:inc(5) end,
     }),
     awful.key({
         modifiers = { mod.super },
-        key = ']',
+        key = '[',
         description = 'decrease volume -5',
         group = 'launcher',
         on_press = function() volume_widget:dec(5) end,

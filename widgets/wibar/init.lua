@@ -47,13 +47,13 @@ return function(s)
                 layout = wibox.layout.fixed.horizontal,
                 s.widgets.systray,
                 spr,
-                wibox.widget.imagebox(beautiful.widget_vol),
-                volume_widget{
-                    widget_type = 'horizontal_bar',
-                    device = 'pipewire',
-                    step = '1',
-                    shape = 'powerline'
-                },
+                arrl_ld,
+                wibox.container.background(lw.mpdicon, beautiful.bg_focus),
+                wibox.container.background(lw.mpd.widget, beautiful.bg_focus),
+                arrl_dl,
+                lw.neticon,
+                lw.netdowninfo,
+                lw.netupinfo,
                 spr,
                 arrl_ld,
                 wibox.container.background(lw.cpuicon, beautiful.bg_focus),
@@ -68,9 +68,18 @@ return function(s)
                 lw.hddicon,
                 lw.hdd.widget,
                 arrl_ld,
-                wibox.container.background(lw.neticon, beautiful.bg_focus),
-                wibox.container.background(lw.netdowninfo, beautiful.bg_focus),
-                wibox.container.background(lw.netupinfo, beautiful.bg_focus),
+                wibox.container.background(spr, beautiful.bg_focus),
+                wibox.container.background(spr, beautiful.bg_focus),
+                wibox.container.background(
+                    volume_widget{
+                        widget_type = 'icon_and_text',
+                        device = 'pipewire',
+                        step = '1'
+                    },
+                    beautiful.bg_focus
+                ),
+                wibox.container.background(spr, beautiful.bg_focus),
+                wibox.container.background(spr, beautiful.bg_focus),
                 arrl_dl,
                 lw.clock,
                 spr,
