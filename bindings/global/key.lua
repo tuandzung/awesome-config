@@ -48,7 +48,7 @@ awful.keyboard.append_global_keybindings({
         description = 'lock screen',
         group = 'awesome',
         on_press = function()
-            awful.spawn.with_shell('light-locker-command -l')
+            awful.spawn.with_shell(apps.lockscreen)
         end,
     }),
     awful.key({

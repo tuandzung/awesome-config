@@ -7,7 +7,7 @@ local _M = {
     browser = os.getenv('BROWSER') or 'firefox',
     sysmon = 'btop',
     -- session menu
-    lockscreen = 'light-locker-command -l',
+    lockscreen = 'betterlockscreen -l --off 1 --display 1',
     reboot = 'systemctl reboot',
     suspend = 'systemctl suspend',
     poweroff = 'systemctl poweroff',
