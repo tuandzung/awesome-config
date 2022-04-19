@@ -58,7 +58,7 @@ _M.net = lain.widget.net({
 _M.tempicon = wibox.widget.imagebox(beautiful.widget_temp)
 _M.temp = lain.widget.temp({
     timeout  = 2,
-    tempfile = '/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp3_input',  -- AMD CPU
+    tempfile = '/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp3_input',  -- AMD CPU
     settings = function()
         widget:set_markup(markup.font(beautiful.font, " " .. math.ceil(coretemp_now) .. "°C "))
     end

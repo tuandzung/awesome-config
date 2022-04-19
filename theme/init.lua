@@ -4,7 +4,7 @@ local dpi   = require("beautiful.xresources").apply_dpi
 local theme                                     = {}
 theme.dir                                       = awful.util.get_configuration_dir() .. "theme"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
-theme.font                                      = "M+ Nerd Font 10"
+theme.font                                      = "M+ Nerd Font 11"
 theme.fg_normal                                 = "#DDDDFF"
 theme.fg_focus                                  = "#63BBF2"
 theme.fg_urgent                                 = "#0554F2"
@@ -76,7 +76,7 @@ theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 
 -- Titlebar
-theme.titlebar_height                   = dpi(29)
+theme.titlebar_height                   = dpi(32)
 theme.titlebar_font                     = theme.font
 theme.titlebar_fg_close                 = "#ee4266"
 theme.titlebar_fg_minimize              = "#ffb400"
@@ -87,7 +87,7 @@ theme.titlebar_button_margin_horizontal = 5
 theme.titlebar_button_margin_top        = 2
 
 -- Topbar
-theme.top_panel_height = dpi(24)
+theme.top_panel_height = dpi(28)
 theme.bottom_panel_height = dpi(18)
 
 return theme
