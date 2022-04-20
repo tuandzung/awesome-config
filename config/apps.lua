@@ -3,7 +3,7 @@ local _M = {
     -- common
     terminal = os.getenv('TERMINAL') or 'kitty',
     editor = os.getenv('EDITOR') or 'nvim',
-    filemanager = os.getenv('FILEXP') or 'pcmanfm',
+    filemanager = os.getenv('FILEXP') or 'n',
     browser = os.getenv('BROWSER') or 'firefox',
     sysmon = 'btop',
     -- session menu
