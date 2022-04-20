@@ -7,7 +7,7 @@ local _M = {
     browser = os.getenv('BROWSER') or 'firefox',
     sysmon = 'btop',
     -- session menu
-    lockscreen = 'light-locker-command -l && dm-tool switch-to-greeter',
+    lockscreen = 'gnome-screensaver-command -l && dm-tool switch-to-greeter',
     reboot = 'systemctl reboot',
     suspend = 'systemctl suspend',
     poweroff = 'systemctl poweroff',
