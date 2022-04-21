@@ -7,6 +7,7 @@ local apps = require('config.apps')
 local mod = require('bindings.mod')
 local widgets = require('widgets')
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+local utils = require('utils')
 
 menubar.utils.terminal = apps.terminal
 
@@ -53,43 +54,11 @@ awful.keyboard.append_global_keybindings({
     }),
     awful.key({
         modifiers = { mod.super },
-        key = 'x',
-        description = 'lua execute prompt',
-        group = 'awesome',
-        on_press = function()
-            awful.prompt.run({
-                prompt = 'Run Lua code: ',
-                textbox = awful.screen.focused().promptbox.widget,
-                exe_callback = awful.util.eval,
-                history_path = awful.util.get_cache_dir() .. '/history_eval',
-            })
-        end,
-    }),
-    awful.key({
-        modifiers = { mod.super },
         key = 'Return',
         description = 'open a terminal',
         group = 'launcher',
         on_press = function()
             awful.spawn(apps.terminal)
-        end,
-    }),
-    awful.key({
-        modifiers = { mod.super },
-        key = 'r',
-        description = 'run prompt',
-        group = 'launcher',
-        on_press = function()
-            awful.screen.focused().promptbox:run()
-        end,
-    }),
-    awful.key({
-        modifiers = { mod.super },
-        key = 'p',
-        description = 'show the menubar',
-        group = 'launcher',
-        on_press = function()
-            menubar.show()
         end,
     }),
 })
@@ -202,7 +171,7 @@ awful.keyboard.append_global_keybindings({
         on_press = awful.client.urgent.jumpto,
     }),
     awful.key({
-        modifiers = { mod.super },
+        modifiers = { mod.super, mod.alt },
         key = 'l',
         description = 'increase master width factor',
         group = 'layout',
@@ -211,7 +180,7 @@ awful.keyboard.append_global_keybindings({
         end,
     }),
     awful.key({
-        modifiers = { mod.super },
+        modifiers = { mod.super, mod.alt },
         key = 'h',
         description = 'decrease master width factor',
         group = 'layout',
@@ -330,18 +299,6 @@ awful.keyboard.append_global_keybindings({
             end
         end,
     }),
-    awful.key({
-        modifiers = { mod.super },
-        keygroup = 'numpad',
-        description = 'select layout directrly',
-        group = 'layout',
-        on_press = function(index)
-            local tag = awful.screen.focused().selected_tag
-            if tag then
-                tag.layout = tag.layouts[index] or tag.layout
-            end
-        end,
-    }),
 })
 
 -- volume
@@ -371,6 +328,44 @@ awful.keyboard.append_global_keybindings({
         group = 'launcher',
         on_press = function()
             awful.spawn.with_shell('rofi -show drun')
+        end,
+    }),
+})
+
+-- other key bindings
+awful.keyboard.append_global_keybindings({
+    awful.key({
+        modifiers = { mod.super },
+        key = 'n',
+        description = 'toggle redshift',
+        group = 'others',
+        on_press = utils.redshift.redshift_toggle,
+    }),
+    awful.key({
+        modifiers = { mod.super },
+        key = 'v',
+        description = 'show clipboard',
+        group = 'others',
+        on_press = function ()
+            awful.spawn(apps.clipboard_list)
+        end,
+    }),
+    awful.key({
+        modifiers = { mod.super },
+        key = 'm',
+        description = 'music',
+        group = 'others',
+        on_press = function ()
+            awful.spawn(apps.music_cmd)
+        end,
+    }),
+    awful.key({
+        modifiers = { mod.super },
+        key = 'f',
+        description = 'file manager',
+        group = 'others',
+        on_press = function ()
+            awful.spawn(apps.fm_cmd)
         end,
     }),
 })
