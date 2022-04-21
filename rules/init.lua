@@ -62,7 +62,7 @@ ruled.client.connect_signal('request::rules', function()
     ruled.client.append_rule {
         rule_any = { class = { "Firefox", "firefox" } },
         except = { type = "dialog" },
-        properties = { screen = "primary", tag = '2' }
+        properties = { screen = "primary", tag = '1' }
     }
 
     ruled.client.append_rule {
@@ -73,5 +73,10 @@ ruled.client.connect_signal('request::rules', function()
     ruled.client.append_rule {
         rule_any = { class = { "Rambox", "Ferdi", "TelegramDesktop" } },
         properties = { screen = "primary", tag = '4' }
+    }
+
+    ruled.client.append_rule {
+        rule = { class = "kitty" },
+        properties = { screen = 2, tag = '1' }
     }
 end)
