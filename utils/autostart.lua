@@ -1,20 +1,49 @@
-local spawn = require('awful.spawn')
-local search_paths = _G.conf.paths.autostart
+local run_one_pid = require("utils").shell.run_one_pid
+local apps = _G.conf.apps
 
--- Commands table
-local cmd = {
-    exe = 'dex',
-    run = 'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;'
-        .. 'xrdb -merge <<< "awesome.started:true";'
-        .. 'dex --environment AwesomeWM --autostart --search-paths "'
-        .. search_paths
-        .. '"',
-}
+-- { Composite manager
+run_one_pid("picom")
+-- }
 
--- Run dex.
-spawn.easy_async_with_shell('command -v ' .. cmd.exe, function(path)
-    if not path then
-        return
-    end
-    spawn.with_shell(cmd.run)
-end)
+-- { Hide mouse when not use
+run_one_pid("unclutter")
+-- }
+
+-- { Password manager
+-- run_one_pid("1password")
+-- run_one_pid("bitwarden-desktop")
+-- }
+
+-- { Browser
+-- run_one_pid(apps.browser)
+-- }
+
+-- { Clipboard manager
+run_one_pid(apps.clipboard)
+-- }
+
+-- { Network manager
+run_one_pid("nm-applet")
+-- }
+
+-- { IM framework
+run_one_pid("ibus-daemon", "-drx")
+-- }
+
+-- { Redshift
+require("utils.redshift").redshift_init()
+-- }
+
+-- { MPD
+run_one_pid(apps.music_server)
+-- }
+
+-- { Ferdi
+-- run_one_pid("rambox")
+-- }
+
+-- { Mail
+run_one_pid(apps.mail_client)
+-- }
+run_one_pid("gnome-screensaver")
+
