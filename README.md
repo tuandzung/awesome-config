@@ -52,3 +52,5 @@ Feel free to submit PRs!
 + [pipewire](https://archlinux.org/packages/extra/x86_64/pipewire/)
 + [pipewire-alsa](https://archlinux.org/packages/extra/x86_64/pipewire-alsa/)
 + [wireplumber](https://archlinux.org/packages/extra/x86_64/wireplumber/)
++ [ncspot]
++ [playerctl]

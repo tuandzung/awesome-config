@@ -8,6 +8,7 @@ local tasklist = require('widgets.wibar.tasklist')
 local layoutbox = require('widgets.wibar.layoutbox')
 local lain = require('lain')
 local lw = require('widgets.wibar.lain_widgets')
+local bw = require('widgets.wibar.bling_widgets')
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 
 local separators = lain.util.separators
@@ -48,8 +49,9 @@ return function(s)
                 s.widgets.systray,
                 spr,
                 arrl_ld,
-                wibox.container.background(lw.mpdicon, beautiful.bg_focus),
-                wibox.container.background(lw.mpd.widget, beautiful.bg_focus),
+                wibox.container.background(bw.musicicon, beautiful.bg_focus),
+                wibox.container.background(bw.artist_widget, beautiful.bg_focus),
+                wibox.container.background(bw.title_widget, beautiful.bg_focus),
                 arrl_dl,
                 lw.neticon,
                 lw.netdowninfo,

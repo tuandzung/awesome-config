@@ -9,7 +9,7 @@ local _M = {
     sysmon = 'btop',
     mail_client = 'thunderbird',
     music_server = 'mopidy',
-    music_player = 'ncmpcpp',
+    music_player = 'ncspot',
     music_ctl = 'mpc',
     -- session menu
     lockscreen = 'gnome-screensaver-command -l && dm-tool switch-to-greeter',

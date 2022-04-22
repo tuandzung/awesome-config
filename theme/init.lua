@@ -91,4 +91,17 @@ theme.titlebar_button_margin_top        = 2
 theme.top_panel_height = dpi(24)
 theme.bottom_panel_height = dpi(18)
 
+-- Prioritize ncspot over all other players and ignore firefox players (e.g. YouTube and Twitch tabs) completely
+-- theme.playerctl_ignore  = "firefox"
+theme.playerctl_player  = {"ncspot", "%any"}
+
+-- Disable priority of most recently active players
+theme.playerctl_update_on_activity = false
+
+-- Only emit the position signal every 2 seconds
+theme.playerctl_position_update_interval = 2
+
+theme.flash_focus_start_opacity = 0.6 -- the starting opacity
+theme.flash_focus_step = 0.01         -- the step of animation
+
 return theme
