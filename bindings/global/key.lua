@@ -8,6 +8,9 @@ local mod = require('bindings.mod')
 local widgets = require('widgets')
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local utils = require('utils')
+local bling = require('bling')
+
+local playerctl = bling.signal.playerctl.lib()
 
 menubar.utils.terminal = apps.terminal
 
@@ -337,6 +340,55 @@ awful.keyboard.append_global_keybindings({
         group = 'launcher',
         on_press = function()
             awful.spawn.with_shell('rofi -show run')
+        end,
+    }),
+})
+
+-- multimedia
+awful.keyboard.append_global_keybindings({
+    awful.key({
+        modifiers = {},
+        key = 'XF86AudioPlay',
+        description = 'play song',
+        group = 'multimedia',
+        on_press = function ()
+            playerctl:play()
+        end,
+    }),
+    awful.key({
+        modifiers = {},
+        key = 'XF86AudioPause',
+        description = 'pause song',
+        group = 'multimedia',
+        on_press = function ()
+            playerctl:pause()
+        end,
+    }),
+    awful.key({
+        modifiers = {},
+        key = 'XF86AudioStop',
+        description = 'stop',
+        group = 'multimedia',
+        on_press = function ()
+            playerctl:stop()
+        end,
+    }),
+    awful.key({
+        modifiers = {},
+        key = 'XF86AudioNext',
+        description = 'next song',
+        group = 'multimedia',
+        on_press = function ()
+            playerctl:next()
+        end,
+    }),
+    awful.key({
+        modifiers = {},
+        key = 'XF86AudioPrev',
+        description = 'previous song',
+        group = 'multimedia',
+        on_press = function ()
+            playerctl:previous()
         end,
     }),
 })

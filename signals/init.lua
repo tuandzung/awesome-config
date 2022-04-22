@@ -5,4 +5,5 @@ return {
     screen = require('signals.screen'),
     client = require('signals.client'),
     ruled = require('signals.ruled'),
+    playerctl = require('signals.playerctl')
 }

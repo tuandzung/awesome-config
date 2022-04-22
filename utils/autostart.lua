@@ -35,7 +35,7 @@ require("utils.redshift").redshift_init()
 -- }
 
 -- { MPD
-run_one_pid(apps.music_server, nil, "/usr/bin/python /usr/bin/mopidy")
+-- run_one_pid(apps.music_server, nil, "/usr/bin/python /usr/bin/mopidy")
 -- }
 
 -- { Ferdi
