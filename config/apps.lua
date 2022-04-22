@@ -4,7 +4,7 @@ local _M = {
     terminal = 'kitty',
     editor = 'nvim',
     filemanager = 'nnn',
-    browser = 'firefox',
+    browser = 'firefox -ProfileManager',
     clipboard = 'copyq',
     sysmon = 'btop',
     mail_client = 'thunderbird',
@@ -22,9 +22,8 @@ local _M = {
 _M.editor_cmd = _M.terminal .. ' -e ' .. _M.editor
 _M.manual_cmd = _M.terminal .. ' -e man awesome'
 _M.sysmon_cmd = _M.terminal .. ' -e ' .. _M.sysmon
-_M.fm_cmd = _M.terminal .. ' -e ' .. _M.filemanager
 _M.music_cmd = _M.terminal .. ' -e ' .. _M.music_player
 
-_M.clipboard_list = _M.clipboard .. " " .. "menu"
+_M.clipboard_list = _M.clipboard .. " " .. "toggle"
 
 return _M
