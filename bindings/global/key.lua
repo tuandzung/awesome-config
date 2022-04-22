@@ -324,10 +324,19 @@ awful.keyboard.append_global_keybindings({
     awful.key({
         modifiers = { mod.super },
         key = 'space',
-        description = 'open rofi',
+        description = 'open rofi app launcher',
         group = 'launcher',
         on_press = function()
             awful.spawn.with_shell('rofi -show drun')
+        end,
+    }),
+    awful.key({
+        modifiers = { mod.super },
+        key = 'r',
+        description = 'open rofi command launcher',
+        group = 'launcher',
+        on_press = function()
+            awful.spawn.with_shell('rofi -show run')
         end,
     }),
 })
@@ -342,7 +351,7 @@ awful.keyboard.append_global_keybindings({
         on_press = utils.redshift.redshift_toggle,
     }),
     awful.key({
-        modifiers = { mod.super },
+        modifiers = { mod.alt },
         key = 'v',
         description = 'show clipboard',
         group = 'others',
@@ -362,10 +371,10 @@ awful.keyboard.append_global_keybindings({
     awful.key({
         modifiers = { mod.super },
         key = 'f',
-        description = 'file manager',
+        description = 'firefox profile manager',
         group = 'others',
         on_press = function ()
-            awful.spawn(apps.fm_cmd)
+            awful.spawn(apps.browser)
         end,
     }),
 })

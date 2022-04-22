@@ -15,7 +15,7 @@ run_one_pid("unclutter")
 -- }
 
 -- { Browser
--- run_one_pid(apps.browser)
+run_one_pid(apps.browser, nil, "/usr/lib/firefox/firefox")
 -- }
 
 -- { Clipboard manager
@@ -35,11 +35,11 @@ require("utils.redshift").redshift_init()
 -- }
 
 -- { MPD
-run_one_pid(apps.music_server)
+run_one_pid(apps.music_server, nil, "/usr/bin/python /usr/bin/mopidy")
 -- }
 
 -- { Ferdi
--- run_one_pid("rambox")
+run_one_pid("rambox", nil, "/opt/Rambox/rambox")
 -- }
 
 -- { Mail
