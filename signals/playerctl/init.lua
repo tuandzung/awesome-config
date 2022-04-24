@@ -23,5 +23,5 @@ playerctl:connect_signal("metadata",
     -- Set player name, title and artist widgets
     wibar_widgets.name_widget:set_markup_silently(markup.font(beautiful.font, " " .. player_name .. " "))
     wibar_widgets.title_widget:set_markup_silently(markup.font(beautiful.font, " " .. title .. " "))
-    wibar_widgets.artist_widget:set_markup_silently(markup.font(beautiful.font, " " .. artist .. "  >> "))
+    wibar_widgets.artist_widget:set_markup_silently(markup.font(beautiful.font, " " .. artist .. " "))
 end)
