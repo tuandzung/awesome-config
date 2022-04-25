@@ -1,7 +1,6 @@
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
-local dpi = require('beautiful.xresources').apply_dpi
 
 local menu = require('widgets.menu')
 local taglist = require('widgets.wibar.taglist')
@@ -91,29 +90,44 @@ return function(s)
                 layout = wibox.layout.fixed.horizontal,
                 s.widgets.systray,
                 spr,
+                {
+                    layout = awful.widget.only_on_screen,
+                    screen = awful.screen.focused(),
+                    {
+                        layout = wibox.layout.fixed.horizontal,
+                        s.widgets.keyboardlayout,
+                    }
+                },
                 arrl_ld,
-                wibox.container.background(faspotify, beautiful.bg_focus),
-                wibox.container.background(bw.artist_widget, beautiful.bg_focus),
-                wibox.container.background(bw.title_widget, beautiful.bg_focus),
-                arrl_dl,
-                fadownload,
-                lw.netdowninfo,
-                faupload,
-                lw.netupinfo,
-                spr,
-                arrl_ld,
-                wibox.container.background(facpuicon, beautiful.bg_focus),
-                wibox.container.background(lw.cpu.widget, beautiful.bg_focus),
-                arrl_dl,
-                fatempicon,
-                lw.temp.widget,
-                arrl_ld,
-                wibox.container.background(famemicon, beautiful.bg_focus),
-                wibox.container.background(lw.mem.widget, beautiful.bg_focus),
-                arrl_dl,
-                fahddicon,
-                lw.hdd.widget,
-                arrl_ld,
+                {
+                    layout = awful.widget.only_on_screen,
+                    screen = "primary",
+                    {
+                        layout = wibox.layout.fixed.horizontal,
+                        wibox.container.background(faspotify, beautiful.bg_focus),
+                        wibox.container.background(bw.artist_widget, beautiful.bg_focus),
+                        wibox.container.background(bw.title_widget, beautiful.bg_focus),
+                        arrl_dl,
+                        fadownload,
+                        lw.netdowninfo,
+                        faupload,
+                        lw.netupinfo,
+                        spr,
+                        arrl_ld,
+                        wibox.container.background(facpuicon, beautiful.bg_focus),
+                        wibox.container.background(lw.cpu.widget, beautiful.bg_focus),
+                        arrl_dl,
+                        fatempicon,
+                        lw.temp.widget,
+                        arrl_ld,
+                        wibox.container.background(famemicon, beautiful.bg_focus),
+                        wibox.container.background(lw.mem.widget, beautiful.bg_focus),
+                        arrl_dl,
+                        fahddicon,
+                        lw.hdd.widget,
+                        arrl_ld,
+                    }
+                },
                 wibox.container.background(spr, beautiful.bg_focus),
                 wibox.container.background(spr, beautiful.bg_focus),
                 wibox.container.background(

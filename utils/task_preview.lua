@@ -8,7 +8,7 @@ bling.widget.task_preview.enable {
         awful.placement.top_left(c, {
             margins = {
                 top = beautiful.top_panel_height + beautiful.useless_gap,
-                left = dpi(250)
+                left = dpi(150)
             }
         })
     end
