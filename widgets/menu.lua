@@ -4,10 +4,11 @@ local awful = require('awful')
 local hotkeys_popup = require('awful.hotkeys_popup')
 local beautiful = require('beautiful')
 local spawn = awful.spawn
+local utils = require("menubar.utils")
 
-local apps = require('config.apps')
+local apps = _G.conf.apps
 
-_M.awesomemenu = {
+local awesome_menu = {
     {
         'hotkeys',
         function()
@@ -20,49 +21,43 @@ _M.awesomemenu = {
     { 'quit', awesome.quit },
 }
 
-_M.mainmenu = awful.menu({
-    items = {
-        { 'awesome', _M.awesomemenu, beautiful.awesome_icon },
-        { 'open terminal', apps.terminal },
-    },
-})
-
-_M.launcher = awful.widget.launcher({
-    image = beautiful.awesome_icon,
-    menu = _M.mainmenu,
-})
-
-_M.session = awful.menu({
+local session_menu = {
     {
-        '&Lock Desktop',
+        'lock',
         function()
             spawn(apps.lockscreen)
         end,
     },
     {
-        '&Exit Desktop',
-        function()
-            awesome.quit()
-        end,
-    },
-    {
-        '&Reboot System',
+        'reboot',
         function()
             spawn(apps.reboot)
         end,
     },
     {
-        '&Suspend System',
+        'suspend',
         function()
             spawn(apps.suspend)
         end,
     },
     {
-        '&Power Off',
+        'power off',
         function()
             spawn(apps.poweroff)
         end,
     },
+}
+
+_M.main_menu = awful.menu({
+    items = {
+        { 'awesome', awesome_menu, beautiful.awesome_icon },
+        { 'system', session_menu, utils.lookup_icon("applications-system") }
+    },
+})
+
+_M.launcher = awful.widget.launcher({
+    image = beautiful.launcher_icon,
+    menu = _M.main_menu,
 })
 
 return _M
