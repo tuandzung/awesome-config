@@ -54,3 +54,5 @@ Feel free to submit PRs!
 + [wireplumber](https://archlinux.org/packages/extra/x86_64/wireplumber/)
 + [ncspot]
 + [playerctl]
++ [greenclip]
++ [xdotool]
