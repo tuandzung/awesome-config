@@ -1,14 +1,14 @@
 local awful = require('awful')
 local bling = require('bling')
-local beautiful = require('beautiful')
-local dpi = require('beautiful.xresources').apply_dpi
+local wibar = require('widgets.wibar')
 
 bling.widget.task_preview.enable {
     placement_fn = function(c)
-        awful.placement.top_left(c, {
-            margins = {
-                top = beautiful.top_panel_height + beautiful.useless_gap,
-                left = dpi(150)
+        awful.placement.next_to(c, {
+            wibar,
+            {
+                preferred_positions = "bottom",
+                preferred_anchors   = "middle",
             }
         })
     end

@@ -2,6 +2,7 @@ local bling = require('bling')
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
+local wibar = require('widgets.wibar')
 
 bling.widget.tag_preview.enable {
     show_client_content = true,   -- Whether or not to show the client content
@@ -9,9 +10,11 @@ bling.widget.tag_preview.enable {
     honor_padding  = true,        -- Honor padding when creating widget size
     honor_workarea = false,       -- Honor work area when creating widget size
     placement_fn = function(c)    -- Place the widget using awful.placement (this overrides x & y)
-        awful.placement.top_left(c, {
-            margins = {
-                top = beautiful.top_panel_height + beautiful.useless_gap
+        awful.placement.next_to(c, {
+            wibar,
+            {
+                preferred_positions = "bottom",
+                preferred_anchors   = "middle",
             }
         })
     end,
