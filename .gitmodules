@@ -4,9 +4,6 @@
 [submodule "modules/lain"]
 	path = modules/lain
 	url = git@github.com:lcpz/lain.git
-[submodule "modules/awesome-wm-widgets"]
-	path = modules/awesome-wm-widgets
-	url = git@github.com:streetturtle/awesome-wm-widgets.git
 [submodule "modules/bling"]
 	path = modules/bling
 	url = git@github.com:BlingCorp/bling.git
