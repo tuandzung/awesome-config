@@ -44,7 +44,7 @@ return function(s)
                                             false, c)
                     end)
             end,
-            layout = wibox.layout.align.vertical,
+            layout = wibox.layout.align.horizontal,
         },
     }
 end
