@@ -89,17 +89,17 @@ theme.titlebar_button_margin_horizontal = 5
 theme.titlebar_button_margin_top        = 2
 
 -- Topbar
-theme.top_panel_height = dpi(24)
+theme.top_panel_height = dpi(28)
 theme.bottom_panel_height = dpi(18)
 
 -- Icons
-theme.icon_size = 12
+theme.icon_size = 15
 theme.icon_font = "Symbols Nerd Font " -- attention to space at the end!
 theme.icon_color = "#bebebe"
 
 -- Systray
 theme.systray_icon_spacing = dpi(2)
-theme.systray_icon_size = dpi(18)
+theme.systray_icon_size = dpi(22)
 
 -- Notification
 theme.notification_border_width = theme.border_width
@@ -112,7 +112,7 @@ theme.notification_bg = theme.bg_focus
 
 -- Taglist
 theme.taglist_disable_icon = true
-theme.taglist_icons_margin = dpi(7)
+theme.taglist_icons_margin = dpi(8)
 
 theme.tag_preview_widget_border_radius = theme.border_radius
 theme.tag_preview_client_border_radius = theme.border_radius * 0.75
