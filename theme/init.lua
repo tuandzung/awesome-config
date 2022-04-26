@@ -1,5 +1,6 @@
 local awful = require("awful")
 local dpi   = require("beautiful.xresources").apply_dpi
+local helpers = require("utils.helpers")
 
 local theme                                     = {}
 theme.dir                                       = awful.util.get_configuration_dir() .. "theme"
@@ -99,6 +100,15 @@ theme.icon_color = "#bebebe"
 -- Systray
 theme.systray_icon_spacing = dpi(2)
 theme.systray_icon_size = dpi(18)
+
+-- Notification
+theme.notification_border_width = theme.border_width
+theme.notification_shape = helpers.rrect(10)
+theme.notification_icon_size = dpi(100)
+theme.notification_margin = dpi(20)
+theme.notification_opacity = 0.9
+theme.notification_max_width = dpi(600)
+theme.notification_bg = theme.bg_focus
 
 -- Taglist
 theme.taglist_disable_icon = true
