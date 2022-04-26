@@ -10,6 +10,16 @@ local wibox = require("wibox")
 local naughty = require("naughty")
 local helpers = {}
 
+function helpers.make_fa_icons(code)
+  return wibox.widget{
+    font = beautiful.icon_font .. beautiful.icon_size,
+    markup = ' <span color="'.. beautiful.icon_color ..'">' .. code .. '</span> ',
+    align  = 'center',
+    valign = 'center',
+    widget = wibox.widget.textbox
+  }
+end
+
 function helpers.contains(_table, _c)
 	for _, c in ipairs(_table) do
 		if _c == c then

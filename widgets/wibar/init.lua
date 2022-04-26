@@ -9,45 +9,12 @@ local layoutbox = require('widgets.wibar.layoutbox')
 local lain = require('lain')
 local lw = require('widgets.wibar.lain_widgets')
 local bw = require('widgets.wibar.bling_widgets')
-local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
-local bling = require("bling")
-local playerctl = bling.signal.playerctl.lib()
 
 local separators = lain.util.separators
 -- Separators
 local spr     = wibox.widget.textbox(' ')
 local arrl_dl = separators.arrow_left(beautiful.bg_focus, 'alpha')
 local arrl_ld = separators.arrow_left('alpha', beautiful.bg_focus)
-
-local function make_fa_icons( code )
-  return wibox.widget{
-    font = beautiful.icon_font .. beautiful.icon_size,
-    markup = ' <span color="'.. beautiful.icon_color ..'">' .. code .. '</span> ',
-    align  = 'center',
-    valign = 'center',
-    widget = wibox.widget.textbox
-  }
-end
-
-local facpuicon = make_fa_icons('\u{f85a}')
-local famemicon = make_fa_icons('\u{f2db}')
-local fahddicon = make_fa_icons('\u{f7c9}')
-local fatempicon = make_fa_icons('\u{fa0e}')
-local fatimeicon = make_fa_icons('\u{f017}' )
-local fadownload = make_fa_icons('\u{f6d9}')
-local faupload = make_fa_icons('\u{fa51}')
-local faspotify = make_fa_icons('\u{f1bc}')
-
-faspotify:buttons(awful.util.table.join(
-    awful.button({ }, 1, function ()
-        playerctl:previous()
-    end),
-    awful.button({ }, 2, function ()
-        playerctl:play_pause()
-    end),
-    awful.button({ }, 3, function ()
-        playerctl:next()
-    end)))
 
 return function(s)
     local systray = wibox.widget.systray()
@@ -104,44 +71,34 @@ return function(s)
                     screen = "primary",
                     {
                         layout = wibox.layout.fixed.horizontal,
-                        wibox.container.background(faspotify, beautiful.bg_focus),
+                        wibox.container.background(bw.spotifyicon, beautiful.bg_focus),
                         wibox.container.background(bw.artist_widget, beautiful.bg_focus),
                         wibox.container.background(bw.title_widget, beautiful.bg_focus),
                         arrl_dl,
-                        fadownload,
+                        lw.netdownicon,
                         lw.netdowninfo,
-                        faupload,
+                        lw.netupicon,
                         lw.netupinfo,
                         spr,
                         arrl_ld,
-                        wibox.container.background(facpuicon, beautiful.bg_focus),
+                        wibox.container.background(lw.cpuicon, beautiful.bg_focus),
                         wibox.container.background(lw.cpu.widget, beautiful.bg_focus),
                         arrl_dl,
-                        fatempicon,
+                        lw.tempicon,
                         lw.temp.widget,
                         arrl_ld,
-                        wibox.container.background(famemicon, beautiful.bg_focus),
+                        wibox.container.background(lw.memicon, beautiful.bg_focus),
                         wibox.container.background(lw.mem.widget, beautiful.bg_focus),
                         arrl_dl,
-                        fahddicon,
+                        lw.hddicon,
                         lw.hdd.widget,
                         arrl_ld,
                     }
                 },
-                wibox.container.background(spr, beautiful.bg_focus),
-                wibox.container.background(spr, beautiful.bg_focus),
-                wibox.container.background(
-                    volume_widget{
-                        widget_type = 'icon_and_text',
-                        device = 'pipewire',
-                        step = '1'
-                    },
-                    beautiful.bg_focus
-                ),
-                wibox.container.background(spr, beautiful.bg_focus),
-                wibox.container.background(spr, beautiful.bg_focus),
+                wibox.container.background(lw.volicon, beautiful.bg_focus),
+                wibox.container.background(lw.volume.widget, beautiful.bg_focus),
                 arrl_dl,
-                fatimeicon,
+                lw.clockicon,
                 lw.clock,
                 spr,
                 arrl_ld,

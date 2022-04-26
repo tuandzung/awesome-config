@@ -3,41 +3,53 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 local wibox = require('wibox')
 local lain = require('lain')
+local make_fa_icons = require('utils.helpers').make_fa_icons
 
 local markup = lain.util.markup
 
 local _M = {}
 
+_M.cpuicon = make_fa_icons('\u{f85a}')
+_M.memicon = make_fa_icons('\u{f2db}')
+_M.hddicon = make_fa_icons('\u{f7c9}')
+_M.tempicon = make_fa_icons('\u{fa0e}')
+_M.clockicon = make_fa_icons('\u{f017}' )
+_M.netdownicon = make_fa_icons('\u{f6d9}')
+_M.netupicon = make_fa_icons('\u{fa51}')
+_M.volicon = make_fa_icons('\u{fa7d}')
+
 -- Textclock
-_M.clockicon = wibox.widget.imagebox(beautiful.widget_clock)
 _M.clock = wibox.widget.textclock()
 
 -- Calendar
 lain.widget.cal({
     attach_to = { _M.clock },
     notification_preset = {
-        font = beautiful.font,
-        fg   = beautiful.fg_normal,
-        bg   = beautiful.bg_normal
+        font         = beautiful.font,
+        fg           = beautiful.fg_normal,
+        bg           = beautiful.bg_focus,
+        border_color = beautiful.border_marked,
     }
 })
 
-_M.cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
 _M.cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(markup.font(beautiful.font, " " .. cpu_now.usage .. "% "))
     end
 })
 
-_M.hddicon = wibox.widget.imagebox(beautiful.widget_hdd)
 _M.hdd = lain.widget.fs({
-    notification_preset = { fg = beautiful.fg_normal, bg = beautiful.bg_normal, font = beautiful.font },
+    notification_preset = {
+        fg           = beautiful.fg_normal,
+        bg           = beautiful.bg_focus,
+        font         = beautiful.font,
+        border_color = beautiful.border_marked,
+    },
     settings = function()
         widget:set_markup(markup.font(beautiful.font, " " .. fs_now["/"].percentage .. "% "))
     end
 })
 
-_M.memicon = wibox.widget.imagebox(beautiful.widget_mem)
 _M.mem = lain.widget.mem({
     settings = function()
         widget:set_markup(markup.font(beautiful.font, " " .. mem_now.used .. "MB "))
@@ -46,8 +58,6 @@ _M.mem = lain.widget.mem({
 
 _M.netdowninfo = wibox.widget.textbox()
 _M.netupinfo = wibox.widget.textbox()
-
-_M.neticon = wibox.widget.imagebox(beautiful.widget_net)
 _M.net = lain.widget.net({
     settings = function()
         _M.netupinfo:set_markup(markup.fontfg(beautiful.font, "#e54c62", string.format("%7.1f", net_now.sent) .. " KB/s "))
@@ -55,7 +65,6 @@ _M.net = lain.widget.net({
     end
 })
 
-_M.tempicon = wibox.widget.imagebox(beautiful.widget_temp)
 _M.temp = lain.widget.temp({
     timeout  = 2,
     tempfile = '/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp3_input',  -- AMD CPU
@@ -97,5 +106,41 @@ _M.mpd = lain.widget.mpd({
         widget:set_markup(markup.font(beautiful.font, markup("#EA6F81", artist) .. title))
     end
 })
+
+local vol_mute = '\u{fa80}'
+local vol_zero = '\u{fa7e}'
+local vol_low = '\u{fa7f}'
+local vol_high = '\u{fa7d}'
+
+-- ALSA volume
+_M.volume = lain.widget.alsa({
+    settings = function()
+        if volume_now.status == "off" then
+            _M.volicon:set_markup(' <span color="'.. beautiful.icon_color ..'">' .. vol_mute .. '</span> ')
+        elseif tonumber(volume_now.level) == 0 then
+            _M.volicon:set_markup(' <span color="'.. beautiful.icon_color ..'">' .. vol_zero .. '</span> ')
+        elseif tonumber(volume_now.level) <= 50 then
+            _M.volicon:set_markup(' <span color="'.. beautiful.icon_color ..'">' .. vol_low .. '</span> ')
+        else
+            _M.volicon:set_markup(' <span color="'.. beautiful.icon_color ..'">' .. vol_high .. '</span> ')
+        end
+
+        widget:set_markup(markup.font(beautiful.font, " " .. volume_now.level .. "% "))
+    end
+})
+_M.volicon:buttons(awful.util.table.join(
+    awful.button({}, 1, function ()
+        awful.util.spawn("amixer set Master toggle")
+        _M.volume.update()
+    end),
+    awful.button({}, 4, function ()
+        awful.util.spawn("amixer set Master 1%+")
+        _M.volume.update()
+    end),
+    awful.button({}, 5, function ()
+        awful.util.spawn("amixer set Master 1%-")
+        _M.volume.update()
+    end)
+))
 
 return _M
