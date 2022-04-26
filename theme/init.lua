@@ -7,6 +7,7 @@ theme.dir                                       = awful.util.get_configuration_d
 theme.wallpaper                                 = theme.dir .. "/wall.png"
 theme.launcher_icon                             = theme.dir .. "/icons/arch.svg"
 theme.awesome_icon                              = theme.dir .. "/icons/awesome.png"
+theme.icon_theme                                = 'Tela-dark'
 theme.font                                      = "M+ Nerd Font 11"
 theme.fg_normal                                 = "#DDDDFF"
 theme.fg_focus                                  = "#63BBF2"
