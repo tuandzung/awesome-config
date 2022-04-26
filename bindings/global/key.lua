@@ -6,9 +6,9 @@ local menubar = require('menubar')
 local apps = require('config.apps')
 local mod = require('bindings.mod')
 local widgets = require('widgets')
-local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local utils = require('utils')
 local bling = require('bling')
+local lw = require('widgets.wibar.lain_widgets')
 
 local playerctl = bling.signal.playerctl.lib()
 
@@ -311,14 +311,20 @@ awful.keyboard.append_global_keybindings({
         key = ']',
         description = 'increase volume +5',
         group = 'launcher',
-        on_press = function() volume_widget:inc(5) end,
+        on_press = function()
+            awful.spawn('amixer set Master 5%+')
+            lw.volume.update()
+        end,
     }),
     awful.key({
         modifiers = { mod.super },
         key = '[',
         description = 'decrease volume -5',
         group = 'launcher',
-        on_press = function() volume_widget:dec(5) end,
+        on_press = function()
+            awful.spawn('amixer set Master 5%-')
+            lw.volume.update()
+        end,
     })
 })
 
