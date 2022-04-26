@@ -336,7 +336,7 @@ awful.keyboard.append_global_keybindings({
         description = 'open rofi app launcher',
         group = 'launcher',
         on_press = function()
-            awful.spawn.with_shell('rofi -show drun')
+            awful.spawn.with_shell(apps.apps_launcher)
         end,
     }),
     awful.key({
@@ -345,7 +345,16 @@ awful.keyboard.append_global_keybindings({
         description = 'open rofi command launcher',
         group = 'launcher',
         on_press = function()
-            awful.spawn.with_shell('rofi -show run')
+            awful.spawn.with_shell(apps.command_launcher)
+        end,
+    }),
+    awful.key({
+        modifiers = { mod.alt },
+        key = 'v',
+        description = 'show rofi clipboard',
+        group = 'launcher',
+        on_press = function ()
+            awful.spawn.with_shell(apps.clipboard_list)
         end,
     }),
 })
@@ -407,15 +416,6 @@ awful.keyboard.append_global_keybindings({
         description = 'toggle redshift',
         group = 'others',
         on_press = utils.redshift.redshift_toggle,
-    }),
-    awful.key({
-        modifiers = { mod.alt },
-        key = 'v',
-        description = 'show clipboard',
-        group = 'others',
-        on_press = function ()
-            awful.spawn(apps.clipboard_list)
-        end,
     }),
     awful.key({
         modifiers = { mod.super },
