@@ -12,9 +12,9 @@ local bw = require('widgets.wibar.bling_widgets')
 
 local separators = lain.util.separators
 -- Separators
-local spr     = wibox.widget.textbox(' ')
-local arrl_dl = separators.arrow_left(beautiful.bg_focus, 'alpha')
-local arrl_ld = separators.arrow_left('alpha', beautiful.bg_focus)
+local spr        = wibox.widget.textbox(' ')
+local arrl_dl    = separators.arrow_left(beautiful.bg_focus, 'alpha')
+local arrl_ld    = separators.arrow_left('alpha', beautiful.bg_focus)
 
 return function(s)
     local systray = wibox.widget.systray()
@@ -40,7 +40,11 @@ return function(s)
     s.widgets.wibar = awful.wibar({
         screen = s,
         position = 'top',
-        height = beautiful.top_panel_height,
+        margins = {
+            top = beautiful.wibar_margin,
+            left = beautiful.wibar_margin * 2,
+            right = beautiful.wibar_margin * 2,
+        },
         widget = {
             layout = wibox.layout.align.horizontal,
             -- left widgets
@@ -93,23 +97,23 @@ return function(s)
     })
 
     -- s.widgets.wibar = awful.wibar({
-        -- screen = s,
-        -- position = 'bottom',
-        -- height = beautiful.bottom_panel_height,
-        -- widget = {
-            -- layout = wibox.layout.align.horizontal,
-            -- -- left widgets
-            -- {
-                -- layout = wibox.layout.fixed.horizontal,
-                -- s.widgets.taglist,
-            -- },
-            -- -- middle widgets
-            -- s.widgets.tasklist,
-            -- -- right widgets
-            -- {
-                -- layout = wibox.layout.fixed.horizontal,
-                -- s.widgets.systray
-            -- },
-        -- },
+    -- screen = s,
+    -- position = 'bottom',
+    -- height = beautiful.bottom_panel_height,
+    -- widget = {
+    -- layout = wibox.layout.align.horizontal,
+    -- -- left widgets
+    -- {
+    -- layout = wibox.layout.fixed.horizontal,
+    -- s.widgets.taglist,
+    -- },
+    -- -- middle widgets
+    -- s.widgets.tasklist,
+    -- -- right widgets
+    -- {
+    -- layout = wibox.layout.fixed.horizontal,
+    -- s.widgets.systray
+    -- },
+    -- },
     -- })
 end

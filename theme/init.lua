@@ -1,5 +1,5 @@
-local awful = require("awful")
-local dpi   = require("beautiful.xresources").apply_dpi
+local awful   = require("awful")
+local dpi     = require("beautiful.xresources").apply_dpi
 local helpers = require("utils.helpers")
 
 local theme                                     = {}
@@ -16,7 +16,7 @@ theme.bg_normal                                 = "#1A1A1A"
 theme.bg_focus                                  = "#313131"
 theme.bg_urgent                                 = "#1A1A1A"
 theme.border_width                              = dpi(0)
-theme.border_radius                             = dpi(10)
+theme.border_radius                             = dpi(0)
 theme.border_normal                             = "#3F3F3F"
 theme.border_focus                              = "#7F7F7F"
 theme.border_marked                             = "#8DE0F2"
@@ -90,8 +90,11 @@ theme.titlebar_button_margin_horizontal = 5
 theme.titlebar_button_margin_top        = 2
 
 -- Topbar
-theme.top_panel_height = dpi(28)
-theme.bottom_panel_height = dpi(18)
+theme.wibar_height = dpi(28)
+theme.wibar_margin = dpi(15)
+theme.wibar_border_width = dpi(0)
+theme.wibar_border_color = theme.border_marked
+-- theme.bottom_panel_height = dpi(18)
 
 -- Icons
 theme.icon_size = 15
@@ -115,8 +118,8 @@ theme.notification_bg = theme.bg_focus
 theme.taglist_disable_icon = true
 theme.taglist_icons_margin = dpi(8)
 
-theme.tag_preview_widget_border_radius = theme.border_radius
-theme.tag_preview_client_border_radius = theme.border_radius * 0.75
+theme.tag_preview_widget_border_radius = dpi(10)
+theme.tag_preview_client_border_radius = dpi(10) * 0.75
 theme.tag_preview_client_opacity = 0.5
 theme.tag_preview_client_bg = theme.bg_normal
 theme.tag_preview_client_border_color = theme.border_normal
@@ -131,15 +134,15 @@ theme.tasklist_spacing = dpi(2)
 theme.tasklist_max_widget_size = dpi(300)
 theme.tasklist_icons_margin = dpi(4)
 
-theme.task_preview_widget_border_radius = theme.border_radius
+theme.task_preview_widget_border_radius = dpi(10)
 theme.task_preview_widget_bg = theme.bg_normal
 theme.task_preview_widget_border_color = theme.border_marked
 theme.task_preview_widget_border_width = dpi(1)
 theme.task_preview_widget_margin = dpi(15)
 
 -- Prioritize ncspot over all other players and ignore firefox players (e.g. YouTube and Twitch tabs) completely
-theme.playerctl_ignore  = "firefox"
-theme.playerctl_player  = {"ncspot", "%any"}
+theme.playerctl_ignore = "firefox"
+theme.playerctl_player = { "ncspot", "%any" }
 
 -- Disable priority of most recently active players
 theme.playerctl_update_on_activity = false
@@ -148,6 +151,6 @@ theme.playerctl_update_on_activity = false
 theme.playerctl_position_update_interval = 2
 
 theme.flash_focus_start_opacity = 0.6 -- the starting opacity
-theme.flash_focus_step = 0.01         -- the step of animation
+theme.flash_focus_step = 0.01 -- the step of animation
 
 return theme

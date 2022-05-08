@@ -2,7 +2,7 @@ local run_one_pid = require("utils").shell.run_one_pid
 local apps = _G.conf.apps
 
 -- { Composite manager
-run_one_pid("picom")
+run_one_pid("picom --experimental-backends")
 -- }
 
 -- { Hide mouse when not use
