@@ -12,9 +12,9 @@ local bw = require('widgets.wibar.bling_widgets')
 
 local separators = lain.util.separators
 -- Separators
-local spr     = wibox.widget.textbox(' ')
-local arrl_dl = separators.arrow_left(beautiful.bg_focus, 'alpha')
-local arrl_ld = separators.arrow_left('alpha', beautiful.bg_focus)
+local spr        = wibox.widget.textbox(' ')
+local arrl_dl    = separators.arrow_left(beautiful.bg_focus, 'alpha')
+local arrl_ld    = separators.arrow_left('alpha', beautiful.bg_focus)
 
 return function(s)
     local systray = wibox.widget.systray()
@@ -40,7 +40,11 @@ return function(s)
     s.widgets.wibar = awful.wibar({
         screen = s,
         position = 'top',
-        height = beautiful.top_panel_height,
+        margins = {
+            top = beautiful.wibar_margin,
+            left = beautiful.wibar_margin * 10,
+            right = beautiful.wibar_margin * 10,
+        },
         widget = {
             layout = wibox.layout.align.horizontal,
             -- left widgets
@@ -59,7 +63,7 @@ return function(s)
                 spr,
                 {
                     layout = awful.widget.only_on_screen,
-                    screen = awful.screen.focused(),
+                    screen = 'primary',
                     {
                         layout = wibox.layout.fixed.horizontal,
                         s.widgets.keyboardlayout,
@@ -68,11 +72,11 @@ return function(s)
                 arrl_ld,
                 {
                     layout = awful.widget.only_on_screen,
-                    screen = "primary",
+                    screen = 'primary',
                     {
                         layout = wibox.layout.fixed.horizontal,
-                        wibox.container.background(bw.spotifyicon, beautiful.bg_focus),
                         wibox.container.background(bw.artist_widget, beautiful.bg_focus),
+                        wibox.container.background(bw.spotifyicon, beautiful.bg_focus),
                         wibox.container.background(bw.title_widget, beautiful.bg_focus),
                         arrl_dl,
                         lw.netdownicon,
@@ -93,38 +97,38 @@ return function(s)
                         lw.hddicon,
                         lw.hdd.widget,
                         arrl_ld,
+                        wibox.container.background(lw.volicon, beautiful.bg_focus),
+                        wibox.container.background(lw.volume.widget, beautiful.bg_focus),
+                        arrl_dl,
+                        lw.clockicon,
+                        lw.clock,
+                        spr,
+                        arrl_ld,
                     }
                 },
-                wibox.container.background(lw.volicon, beautiful.bg_focus),
-                wibox.container.background(lw.volume.widget, beautiful.bg_focus),
-                arrl_dl,
-                lw.clockicon,
-                lw.clock,
-                spr,
-                arrl_ld,
                 wibox.container.background(s.widgets.layoutbox, beautiful.bg_focus),
             },
         },
     })
 
     -- s.widgets.wibar = awful.wibar({
-        -- screen = s,
-        -- position = 'bottom',
-        -- height = beautiful.bottom_panel_height,
-        -- widget = {
-            -- layout = wibox.layout.align.horizontal,
-            -- -- left widgets
-            -- {
-                -- layout = wibox.layout.fixed.horizontal,
-                -- s.widgets.taglist,
-            -- },
-            -- -- middle widgets
-            -- s.widgets.tasklist,
-            -- -- right widgets
-            -- {
-                -- layout = wibox.layout.fixed.horizontal,
-                -- s.widgets.systray
-            -- },
-        -- },
+    -- screen = s,
+    -- position = 'bottom',
+    -- height = beautiful.bottom_panel_height,
+    -- widget = {
+    -- layout = wibox.layout.align.horizontal,
+    -- -- left widgets
+    -- {
+    -- layout = wibox.layout.fixed.horizontal,
+    -- s.widgets.taglist,
+    -- },
+    -- -- middle widgets
+    -- s.widgets.tasklist,
+    -- -- right widgets
+    -- {
+    -- layout = wibox.layout.fixed.horizontal,
+    -- s.widgets.systray
+    -- },
+    -- },
     -- })
 end

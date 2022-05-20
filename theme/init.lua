@@ -1,14 +1,14 @@
-local awful = require("awful")
-local dpi   = require("beautiful.xresources").apply_dpi
+local awful   = require("awful")
+local dpi     = require("beautiful.xresources").apply_dpi
 local helpers = require("utils.helpers")
 
 local theme                                     = {}
 theme.dir                                       = awful.util.get_configuration_dir() .. "theme"
-theme.wallpaper                                 = theme.dir .. "/wall.png"
+theme.wallpaper                                 = theme.dir .. "/wall.jpg"
 theme.launcher_icon                             = theme.dir .. "/icons/arch.svg"
 theme.awesome_icon                              = theme.dir .. "/icons/awesome.png"
 theme.icon_theme                                = 'Tela-dark'
-theme.font                                      = "M+ Nerd Font 11"
+theme.font                                      = "M+ Nerd Font 9"
 theme.fg_normal                                 = "#DDDDFF"
 theme.fg_focus                                  = "#63BBF2"
 theme.fg_urgent                                 = "#0554F2"
@@ -90,11 +90,12 @@ theme.titlebar_button_margin_horizontal = 5
 theme.titlebar_button_margin_top        = 2
 
 -- Topbar
-theme.top_panel_height = dpi(28)
+theme.wibar_height = dpi(28)
+theme.wibar_margin = dpi(15)
 theme.bottom_panel_height = dpi(18)
 
 -- Icons
-theme.icon_size = 15
+theme.icon_size = 12
 theme.icon_font = "Symbols Nerd Font " -- attention to space at the end!
 theme.icon_color = "#bebebe"
 
@@ -138,8 +139,8 @@ theme.task_preview_widget_border_width = dpi(1)
 theme.task_preview_widget_margin = dpi(15)
 
 -- Prioritize ncspot over all other players and ignore firefox players (e.g. YouTube and Twitch tabs) completely
-theme.playerctl_ignore  = "firefox"
-theme.playerctl_player  = {"ncspot", "%any"}
+theme.playerctl_ignore = "firefox"
+theme.playerctl_player = { "ncspot", "%any" }
 
 -- Disable priority of most recently active players
 theme.playerctl_update_on_activity = false
@@ -148,6 +149,6 @@ theme.playerctl_update_on_activity = false
 theme.playerctl_position_update_interval = 2
 
 theme.flash_focus_start_opacity = 0.6 -- the starting opacity
-theme.flash_focus_step = 0.01         -- the step of animation
+theme.flash_focus_step = 0.01 -- the step of animation
 
 return theme
