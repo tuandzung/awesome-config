@@ -31,5 +31,8 @@ _M.clipboard_list = _M.alfred
     .. " -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
     .. " ; "
     .. "xdotool key Shift+Insert"
+_M.calculator = _M.alfred
+    .. " -modi calc -show calc -no-show-match -no-sort -calc-command "
+    .. '"' .. "echo -n '{result}' | xclip -selection clipboard" .. '"'
 
 return _M
