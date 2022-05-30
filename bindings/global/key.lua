@@ -353,8 +353,17 @@ awful.keyboard.append_global_keybindings({
         key = 'v',
         description = 'show rofi clipboard',
         group = 'launcher',
-        on_press = function ()
+        on_press = function()
             awful.spawn.with_shell(apps.clipboard_list)
+        end,
+    }),
+    awful.key({
+        modifiers = { mod.super },
+        key = 'c',
+        description = 'show rofi calculator',
+        group = 'launcher',
+        on_press = function()
+            awful.spawn.with_shell(apps.calculator)
         end,
     }),
 })
@@ -366,7 +375,7 @@ awful.keyboard.append_global_keybindings({
         key = 'XF86AudioPlay',
         description = 'play song',
         group = 'multimedia',
-        on_press = function ()
+        on_press = function()
             playerctl:play()
         end,
     }),
@@ -375,7 +384,7 @@ awful.keyboard.append_global_keybindings({
         key = 'XF86AudioPause',
         description = 'pause song',
         group = 'multimedia',
-        on_press = function ()
+        on_press = function()
             playerctl:pause()
         end,
     }),
@@ -384,7 +393,7 @@ awful.keyboard.append_global_keybindings({
         key = 'XF86AudioStop',
         description = 'stop',
         group = 'multimedia',
-        on_press = function ()
+        on_press = function()
             playerctl:stop()
         end,
     }),
@@ -393,7 +402,7 @@ awful.keyboard.append_global_keybindings({
         key = 'XF86AudioNext',
         description = 'next song',
         group = 'multimedia',
-        on_press = function ()
+        on_press = function()
             playerctl:next()
         end,
     }),
@@ -402,7 +411,7 @@ awful.keyboard.append_global_keybindings({
         key = 'XF86AudioPrev',
         description = 'previous song',
         group = 'multimedia',
-        on_press = function ()
+        on_press = function()
             playerctl:previous()
         end,
     }),
@@ -422,7 +431,7 @@ awful.keyboard.append_global_keybindings({
         key = 'm',
         description = 'music',
         group = 'others',
-        on_press = function ()
+        on_press = function()
             awful.spawn(apps.music_cmd)
         end,
     }),
@@ -431,7 +440,7 @@ awful.keyboard.append_global_keybindings({
         key = 'f',
         description = 'firefox profile manager',
         group = 'others',
-        on_press = function ()
+        on_press = function()
             awful.spawn(apps.browser)
         end,
     }),
