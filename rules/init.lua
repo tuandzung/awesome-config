@@ -1,6 +1,5 @@
 local awful = require('awful')
 local ruled = require('ruled')
-local beautiful = require('beautiful')
 
 ruled.client.connect_signal('request::rules', function()
     -- All clients will match this rule.
@@ -8,8 +7,6 @@ ruled.client.connect_signal('request::rules', function()
         id = 'global',
         rule = {},
         properties = {
-            border_width = beautiful.border_width,
-            border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
             screen = awful.screen.preferred,
@@ -53,9 +50,9 @@ ruled.client.connect_signal('request::rules', function()
 
     -- Add titlebars to normal clients and dialogs
     -- ruled.client.append_rule({
-        -- id = 'titlebars',
-        -- rule_any = { type = { 'normal', 'dialog' } },
-        -- properties = { titlebars_enabled = true },
+    -- id = 'titlebars',
+    -- rule_any = { type = { 'normal', 'dialog' } },
+    -- properties = { titlebars_enabled = true },
     -- })
 
     -- Set Firefox to always map on the tag named '2' on screen 1.
