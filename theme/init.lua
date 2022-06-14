@@ -4,21 +4,21 @@ local helpers = require("utils.helpers")
 
 local theme                                     = {}
 theme.dir                                       = awful.util.get_configuration_dir() .. "theme"
-theme.wallpaper                                 = theme.dir .. "/wall.png"
-theme.font                                      = "M+ Nerd Font 10"
+theme.wallpaper                                 = theme.dir .. "/wall.jpg"
 theme.launcher_icon                             = theme.dir .. "/icons/arch.svg"
 theme.awesome_icon                              = theme.dir .. "/icons/awesome.png"
-theme.icon_theme                                = "Papirus-Dark"
+theme.icon_theme                                = 'Tela-dark'
+theme.font                                      = "M+ Nerd Font 9"
 theme.fg_normal                                 = "#DDDDFF"
 theme.fg_focus                                  = "#63BBF2"
 theme.fg_urgent                                 = "#0554F2"
 theme.bg_normal                                 = "#1A1A1A"
 theme.bg_focus                                  = "#313131"
 theme.bg_urgent                                 = "#1A1A1A"
-theme.border_width                              = dpi(0)
+theme.border_width                              = dpi(4)
 theme.border_radius                             = dpi(0)
-theme.border_normal                             = "#3F3F3F"
-theme.border_focus                              = "#7F7F7F"
+theme.border_normal                             = "#DDDDFF"
+theme.border_focus                              = "#63BBF2"
 theme.border_marked                             = "#8DE0F2"
 theme.tasklist_bg_focus                         = "#1A1A1A"
 theme.titlebar_bg_focus                         = theme.bg_focus
@@ -79,7 +79,7 @@ theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 
 -- Titlebar
-theme.titlebar_height                   = dpi(29)
+theme.titlebar_height                   = dpi(32)
 theme.titlebar_font                     = theme.font
 theme.titlebar_fg_close                 = "#ee4266"
 theme.titlebar_fg_minimize              = "#ffb400"
@@ -92,17 +92,15 @@ theme.titlebar_button_margin_top        = 2
 -- Topbar
 theme.wibar_height = dpi(28)
 theme.wibar_margin = dpi(15)
-theme.wibar_border_width = dpi(0)
-theme.wibar_border_color = theme.border_marked
--- theme.bottom_panel_height = dpi(18)
+theme.bottom_panel_height = dpi(18)
 
 -- Icons
-theme.icon_size = 15
+theme.icon_size = 12
 theme.icon_font = "Symbols Nerd Font " -- attention to space at the end!
 theme.icon_color = "#bebebe"
 
 -- Systray
-theme.systray_icon_spacing = dpi(2)
+theme.systray_icon_spacing = dpi(5)
 theme.systray_icon_size = dpi(22)
 
 -- Notification
