@@ -42,8 +42,8 @@ return function(s)
         position = 'top',
         margins = {
             top = beautiful.wibar_margin,
-            left = beautiful.wibar_margin * 2,
-            right = beautiful.wibar_margin * 2,
+            left = beautiful.wibar_margin * 10,
+            right = beautiful.wibar_margin * 10,
         },
         widget = {
             layout = wibox.layout.align.horizontal,
